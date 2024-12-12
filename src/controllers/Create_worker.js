@@ -62,3 +62,86 @@ import db from "../database/db.js";
 };
 
 export default createworker;
+
+
+
+
+
+app.get("/getAllusers", async (req, res) => {
+  try {
+    const [response] = await db.query("SELECT * FROM student");
+
+    res.status(200).json({
+      data: response,
+      status: "success",
+    });
+  } catch (error) {
+    res.status(500).json({
+      messgae: error,
+      status: "error",
+    });
+  }
+});
+
+app.get("/getusersById/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [response] = await db.query(
+      "SELECT * FROM student WHERE  id = ?",
+      id
+    );
+
+    res.status(200).json({
+      data: response,
+      status: "success",
+    });
+  } catch (error) {
+    res.status(500).json({
+      messgae: error,
+      status: "error",
+    });
+  }
+});
+
+app.put("/updateUser/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { Name, Email, Message } = req.body;
+
+    const [response] = await db.query(
+      "UPDATE student SET Name = ?, Email=?, Message=?  WHERE id = ?",
+      [Name, Email, Message, id]
+    );
+
+    const [updatedResponse] = await db.query(
+      "SELECT * FROM student WHERE  id = ?",
+      id
+    );
+
+    res.status(200).json({
+      data: "success",
+      message: updatedResponse,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error,
+    });
+  }
+});
+
+app.delete("/deleteUser/:id", async (req, res) => {
+    try {
+        const {id} = req.params
+        const response = db.query("DELETE FROM student WHERE id = ?", [id]);
+
+
+        res.status(200).json({
+            status:"success",
+            message:"delete succesffully"
+        })
+    } catch (error) {
+        res.status(500).json({
+            message:error
+        })
+    }
+});
