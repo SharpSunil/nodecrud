@@ -4,14 +4,13 @@
     "express": "^4.21.2",
     "mysql2": "^3.11.5",
     "nodemon": "^3.1.7"
-   
   },
   "name": "mycrudnode",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
   "engines": {
-    "node":"22"
+    "node": "22"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

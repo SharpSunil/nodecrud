@@ -1,10 +1,10 @@
 import express from "express";
 import db from "./database/db.js";
 import router from "./routes/workerRoutes.js";
-
+import cors from "cors"
 const data = express(); //variable define
 data.use(express.json()); // convert data in json format
-
+data.use(cors())
 const port = 5000; //create variable for default port
 
 data.listen(port, () => {
