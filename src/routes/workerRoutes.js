@@ -1,6 +1,13 @@
 import express from "express"
-import Create_worker from "../controllers/Create_worker.js"
+import { createworker, viewworker, getworker, updateworker } from "../controllers/Worker.js";
+
 
 const router = express.Router();
-router.post('/create_worker', Create_worker);
+router.post("/createworker", createworker);
+router.get("/viewworker", viewworker);
+router.get("/getworker/:id", getworker)
+router.put("/updateworker/:id", updateworker)
+
+
+
 export default router;
