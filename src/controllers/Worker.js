@@ -17,6 +17,7 @@ export const createworker = async (req, res) => {
       worker_uid_number,
       worker_pan_number,
       worker_nominee_name,
+      worker_image,
     } = req.body;
 
     // Check for duplicate entries first
@@ -33,7 +34,7 @@ export const createworker = async (req, res) => {
 
     // Insert the worker data
     const [worker] = await db.query(
-      "INSERT INTO worker (worker_name,worker_mobile,worker_mail,worker_roll,worker_dob,worker_jobdesc,worker_address,worker_team,worker_card_number,worker_uid_number,worker_pan_number,worker_nominee_name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+      "INSERT INTO worker (worker_name,worker_mobile,worker_mail,worker_roll,worker_dob,worker_jobdesc,worker_address,worker_team,worker_card_number,worker_uid_number,worker_pan_number,worker_nominee_name, worker_image) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
       [
         worker_name,
         worker_mobile,
@@ -47,6 +48,7 @@ export const createworker = async (req, res) => {
         worker_uid_number,
         worker_pan_number,
         worker_nominee_name,
+        worker_image,
       ]
     );
 
@@ -69,6 +71,7 @@ export const createworker = async (req, res) => {
         worker_uid_number,
         worker_pan_number,
         worker_nominee_name,
+        worker_image,
       },
       status: "Successful",
     });
@@ -130,11 +133,12 @@ export const updateworker = async (req, res) => {
       worker_uid_number,
       worker_pan_number,
       worker_nominee_name,
+      worker_image,
     } = req.body;  // Extracting fields from the request body
 
     // Correcting the SQL query by removing duplicate worker_address
     const [response] = await db.query(
-      "UPDATE worker SET worker_name = ?, worker_mobile = ?, worker_mail = ?, worker_roll = ?, worker_dob = ?, worker_jobdesc = ?, worker_address = ?, worker_team = ?, worker_card_number = ?, worker_uid_number = ?, worker_pan_number = ?, worker_nominee_name = ? WHERE id = ?",
+      "UPDATE worker SET worker_name = ?, worker_mobile = ?, worker_mail = ?, worker_roll = ?, worker_dob = ?, worker_jobdesc = ?, worker_address = ?, worker_team = ?, worker_card_number = ?, worker_uid_number = ?, worker_pan_number = ?, worker_nominee_name = ? , worker_image = ? WHERE id = ?",
       [
         worker_name,
         worker_mobile,
@@ -148,6 +152,7 @@ export const updateworker = async (req, res) => {
         worker_uid_number,
         worker_pan_number,
         worker_nominee_name,
+        worker_image,
         id,  // Adding id as the last parameter for WHERE clause
       ]
     );

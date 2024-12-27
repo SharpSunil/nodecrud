@@ -5,7 +5,7 @@ import cors from "cors"
 const data = express(); //variable define
 data.use(express.json()); // convert data in json format
 data.use(cors())
-const port = 5000; //create variable for default port
+const port = 4000; //create variable for default port
 
 data.listen(port, () => {
   console.log(`Hello local server : ${port}`); //listen use for call server
